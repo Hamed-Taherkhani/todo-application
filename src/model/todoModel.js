@@ -14,7 +14,7 @@ const todoSchema = new mongoose.Schema({
     required: true,
     default: false,
   },
-  createdAt: {
+  lastModified: {
     type: Date,
     required: true,
     default: Date.now,
