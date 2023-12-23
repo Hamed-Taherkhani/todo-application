@@ -3,6 +3,7 @@ const helmet = require("helmet");
 const morgan = require("morgan");
 const express = require("express");
 const mongoose = require("mongoose");
+const todoRouter = require("./src/router/todoRouter");
 
 const app = express();
 
@@ -10,6 +11,9 @@ const app = express();
 app.use(helmet());
 app.use(express.json());
 app.use(morgan("dev"));
+
+// Set routers
+app.use("/todo", todoRouter);
 
 // Try connect to mongodb server
 mongoose
