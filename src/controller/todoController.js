@@ -41,7 +41,25 @@ const post_new_todo = async (req, res) => {
   }
 };
 
+const delete_todo = async (req, res) => {
+  const ids = req.body;
+
+  try {
+    const result = await TodoModel.deleteMany({ _id: { $in: ids } });
+
+    if (result.deletedCount >= 1) {
+      return res.status(200).send(`${result.deletedCount} todos was deleted.`);
+    } else {
+      return res.status(400).send("Item was not found!");
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(500).send("We couldn't delete item! please try again.");
+  }
+};
+
 module.exports = {
   get_todo_list,
   post_new_todo,
+  delete_todo,
 };
